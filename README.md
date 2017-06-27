@@ -1,21 +1,28 @@
-# neural_image_captioning
-Neural image captioning implementation with keras (tensorflow/theano).
+# Neural Image Captioning (NIC)
+Neural image captioning implementation with Keras based on [Show and Tell](https://arxiv.org/abs/1411.4555).
 
-Instructions to train from zero using the iapr2012 dataset (or any other dataset)
+# Instructions
+To train from zero using the iapr2012 dataset:
+* Download IAPR2012 dataset from [here](http://imageclef.org/photodata)
+* Move the downloaded file to the datasets/IAPR_2012/ directory
+* Untar the file:
+> tar xvf iaprtc12.tgz
 
-download the file from these website
-http://imageclef.org/photodata
+## Extract/download image features
+### To extract:
+* Edit the file train.py by changing the flag extract_image_features to True.
 
-move the downloaded file to the datasets/IAPR_2012/ directory
+### To download:
+* Download the image features:
+* Download the extracted image features from [here](https://drive.google.com/open?id=0B-6ZrOvYmbrTd0Q5NEQ4cTB0Z0k)
+* Move them do  datasets/IAPR_2012/preprocessed_data/ directory
 
-untar the file
-tar xvf iaprtc12.tgz
+* Start training by running the script 
+> python3 train.py
 
-edit the file train.py by changing the flag extract_image_features to True.
+# Notes
+* Extracting the image features might take 1-2 hours in a GTX860M.
+* Training 50 epochs should give you reasonable results.
 
-run the train script 
-python3 train.py
-
-Instructions to test data (observe results from a model trained on iapr2012 dataset)
 
 
