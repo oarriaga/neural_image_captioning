@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from keras.models import load_model
 import pickle
 import h5py
 
@@ -51,6 +50,7 @@ class Evaluator(object):
                                             str.contains('iaprtc12')]
         else:
             test_data = self.test_data
+
         if image_file == None:
             image_name = np.asarray(test_data.sample(1))[0][0]
         else:
@@ -63,7 +63,7 @@ class Evaluator(object):
         image_features[0, 0, :] = features
         print(self.BOS)
         for word_arg in range(self.MAX_TOKEN_LENGTH):
-            predictions = self.model.predict([text,image_features])
+            predictions = self.model.predict([text, image_features])
             word_id = np.argmax(predictions[0, word_arg, :])
             next_word_arg = word_arg + 1
             text[0, next_word_arg, word_id] = 1
@@ -111,10 +111,13 @@ class Evaluator(object):
                                header=False, index=False)
 
 if __name__ == '__main__':
+    from keras.models import load_model
+
     root_path = '../datasets/IAPR_2012/'
     data_path = root_path + 'preprocessed_data/'
     images_path = root_path + 'iaprtc12/'
-    model = load_model('../trained_models/demo_models/iapr_weigths.hdf5')
+    model_filename = '../trained_models/IAPR_2012/iapr_weights.55-1.96.hdf5'
+    model = load_model(model_filename)
     evaluator = Evaluator(model, data_path, images_path)
     #evaluator.write_captions()
     evaluator.display_caption()
