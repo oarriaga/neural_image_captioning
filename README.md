@@ -23,6 +23,7 @@ To train from zero using the iapr2012 dataset:
 # Notes
 * Extracting the image features might take 1-2 hours in a GTX860M.
 * Training 50 epochs should give you reasonable results.
+* I will provide pre-trained models in COCO soon (hopefully)
 
 
 
