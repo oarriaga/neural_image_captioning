@@ -1,0 +1,7 @@
+datasets/COCO/*
+!datasets/COCO/COCO_training_2014_captions.txt
+datasets/IAPR_2012/*
+!datasets/IAPR_2012/IAPR_2012_captions.txt
+trained_models/
+!trained_models/demo_models/
+*pyc
