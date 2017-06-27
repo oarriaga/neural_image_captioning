@@ -6,11 +6,10 @@ from string import digits
 import time
 
 import h5py
-from sklearn.model_selection import KFold
 import numpy as np
 import pandas as pd
 
-class Preprocessor(object):
+class DataManager(object):
     """Data manegment and pre-preprocessor class
     # Arguments
         data_filename: File which contains in every row the caption and
@@ -335,31 +334,18 @@ class Preprocessor(object):
         training_data = complete_training_data[0:training_size]
         validation_data.to_csv('validation_data.txt',sep='*',index=False)
         training_data.to_csv('training_data.txt',sep='*',index=False)
-        cross_validation_directory = 'cross_validation'
-        if not os.path.exists(cross_validation_directory):
-            os.makedirs(cross_validation_directory)
-        fold_counter = 1
-        k_fold = KFold(n_splits=5, shuffle=True)
-        for train_indices,val_indices in k_fold.split(complete_training_data):
-            complete_training_data.loc[train_indices,:].to_csv(
-		'cross_validation/training_fold_' + str(fold_counter) + '.txt',
-                sep='*',index=False)
-            complete_training_data.loc[val_indices,:].to_csv(
-            'cross_validation/validation_fold_' + str(fold_counter) + '.txt',
-            sep='*',index=False)
-            fold_counter = fold_counter + 1
 
 if __name__ == '__main__':
 
     root_path = '../datasets/IAPR_2012/'
     captions_filename = root_path + 'IAPR_2012_captions.txt'
-    data_preprocessor = Preprocessor(data_filename = captions_filename,
-                                    max_caption_length = 50,
-                                    word_frequency_threshold = 2,
-                                    extract_image_features = True,
-                                    image_directory = root_path + 'iaprtc12/',
-                                    cnn_extractor = 'inception',
-                                    split_data = True,
-                                    dump_path = root_path + 'preprocessed_data/')
+    data_manager = DataManager(data_filename = captions_filename,
+                                max_caption_length = 50,
+                                word_frequency_threshold = 2,
+                                extract_image_features = True,
+                                image_directory = root_path + 'iaprtc12/',
+                                cnn_extractor = 'inception',
+                                split_data = True,
+                                dump_path = root_path + 'preprocessed_data/')
 
-    data_preprocessor.preprocess()
+    data_manager.preprocess()
