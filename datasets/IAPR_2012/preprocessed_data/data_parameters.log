@@ -13,4 +13,4 @@ initial_word_size: 4137
 words_removed_by_frequency_threshold 1971 
 current_word_size: 2166 
 cnn_extractor: inception 
-elapsed_time: 0.9081866999999875
+elapsed_time: 0.2962922819997402
