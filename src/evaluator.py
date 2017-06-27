@@ -116,7 +116,7 @@ if __name__ == '__main__':
     root_path = '../datasets/IAPR_2012/'
     data_path = root_path + 'preprocessed_data/'
     images_path = root_path + 'iaprtc12/'
-    model_filename = '../trained_models/IAPR_2012/iapr_weights.99-1.99.hdf5'
+    model_filename = '../trained_models/IAPR_2012/iapr_weights.90-1.99.hdf5'
     model = load_model(model_filename)
     evaluator = Evaluator(model, data_path, images_path)
     #evaluator.write_captions()

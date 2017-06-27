@@ -5,5 +5,4 @@ datasets/IAPR_2012/iaprtc12.tgz
 datasets/IAPR_2012/datasets
 datasets/IAPR_2012/preprocessed_data/inception_image_name_to_features.h5
 datasets/IAPR_2012/preprocessed_data/vgg16_image_name_to_features.h5
-trained_models/
 *pyc
