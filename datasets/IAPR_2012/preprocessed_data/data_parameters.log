@@ -1,0 +1,16 @@
+data_filename ../datasets/IAPR_2012/IAPR_2012_captions.txt 
+dump_path ../datasets/IAPR_2012/preprocessed_data/ 
+BOS: <S> 
+EOS: <E> 
+PAD: <P> 
+IMG_FEATS: 2048 
+word_frequency_threshold: 2 
+max_caption_length: 30 
+initial_data_size: 19625 
+captions_larger_than_threshold: 1047 
+current_data_size: 18578 
+initial_word_size: 4137 
+words_removed_by_frequency_threshold 1971 
+current_word_size: 2166 
+cnn_extractor: inception 
+elapsed_time: 0.9081866999999875
