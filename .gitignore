@@ -1,7 +1,9 @@
 datasets/COCO/*
 !datasets/COCO/COCO_training_2014_captions.txt
-datasets/IAPR_2012/*
-!datasets/IAPR_2012/IAPR_2012_captions.txt
+datasets/IAPR_2012/iaprtc12
+datasets/IAPR_2012/iaprtc12.tgz
+datasets/IAPR_2012/datasets
+datasets/IAPR_2012/preprocessed_data/inception_image_name_to_features.h5
+datasets/IAPR_2012/preprocessed_data/vgg16_image_name_to_features.h5
 trained_models/
-!trained_models/demo_models/
 *pyc
