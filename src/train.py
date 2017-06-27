@@ -4,14 +4,14 @@ from keras.callbacks import CSVLogger
 from keras.callbacks import ModelCheckpoint
 from keras.callbacks import ReduceLROnPlateau
 from models import NIC
-from preprocessor import Preprocessor
+from data_manager import DataManager
 
-num_epochs = 500
-batch_size = 100
+num_epochs = 5000
+batch_size = 256
 root_path = '../datasets/IAPR_2012/'
 captions_filename = root_path + 'IAPR_2012_captions.txt'
-data_manager = Preprocessor(data_filename=captions_filename,
-                            max_caption_length=16,
+data_manager = DataManager(data_filename=captions_filename,
+                            max_caption_length=30,
                             word_frequency_threshold=2,
                             extract_image_features=False,
                             cnn_extractor='inception',
@@ -34,6 +34,7 @@ print('Number of validation samples:', num_validation_samples)
 
 model = NIC(max_token_length=generator.MAX_TOKEN_LENGTH,
             vocabulary_size=generator.VOCABULARY_SIZE,
+            rnn='gru',
             num_image_features=generator.IMG_FEATS,
             hidden_size=128,
             embedding_size=128)
@@ -55,18 +56,18 @@ model_checkpoint = ModelCheckpoint(model_names,
                                    save_best_only=False,
                                    save_weights_only=False)
 
-reduce_learning_rate = ReduceLROnPlateau(monitor='val_loss', factor=0.7,
+reduce_learning_rate = ReduceLROnPlateau(monitor='val_loss', factor=0.1,
                                          patience=5, verbose=1)
 
 callbacks = [csv_logger, model_checkpoint, reduce_learning_rate]
 
 model.fit_generator(generator=generator.flow(mode='train'),
-                    samples_per_epoch=num_training_samples,
-                    nb_epoch=num_epochs,
+                    steps_per_epoch=int(num_training_samples / batch_size),
+                    epochs=num_epochs,
                     verbose=1,
                     callbacks=callbacks,
                     validation_data=generator.flow(mode='validation'),
-                    nb_val_samples=num_validation_samples)
+                    validation_steps=int(num_validation_samples / batch_size))
 
 evaluator = Evaluator(model, data_path=preprocessed_data_path,
                       images_path=root_path + 'iaprtc12/')
