@@ -1,6 +1,8 @@
 # Neural Image Captioning (NIC)
 Neural image captioning implementation with Keras based on [Show and Tell](https://arxiv.org/abs/1411.4555).
 
+![alt tag](images/example.png)
+
 # Instructions
 To train from zero using the iapr2012 dataset:
 * Download IAPR2012 dataset from [here](http://imageclef.org/photodata)
