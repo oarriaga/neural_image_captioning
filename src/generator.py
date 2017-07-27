@@ -35,7 +35,7 @@ class Generator():
             self.image_features_filename = (data_path +
                                             'inception_image_name_to_features.h5')
         else:
-            self.image_features_filename = self.data + image_features_filename
+            self.image_features_filename = self.data_path + image_features_filename
 
 
         self.dictionary = None
