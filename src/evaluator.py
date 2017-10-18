@@ -62,7 +62,7 @@ class Evaluator(object):
         image_features = np.zeros((1, self.MAX_TOKEN_LENGTH, self.IMG_FEATS))
         image_features[0, 0, :] = features
         print(self.BOS)
-        for word_arg in range(self.MAX_TOKEN_LENGTH):
+        for word_arg in range(self.MAX_TOKEN_LENGTH - 1):
             predictions = self.model.predict([text, image_features])
             word_id = np.argmax(predictions[0, word_arg, :])
             next_word_arg = word_arg + 1
