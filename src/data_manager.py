@@ -227,9 +227,10 @@ class DataManager(object):
             from keras.applications import InceptionV3
 
             self.IMG_FEATS = 2048
-            base_model = InceptionV3(weights='imagenet')
-            model =  Model(input=base_model.input,
-                                output=base_model.get_layer('flatten').output)
+            base_model = InceptionV3(weights='imagenet',include_top=False)
+#             model =  Model(input=base_model.input,
+#                                 output=base_model.get_layer('flatten').output)
+            model = base_model
             self.extracted_features = []
             self.image_feature_files = list(set(self.image_files))
             number_of_images = len(self.image_feature_files)
